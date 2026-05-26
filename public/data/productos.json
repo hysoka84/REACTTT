@@ -1,0 +1,23 @@
+[
+    {
+        "id": 1,
+        "nombre": "Camara",
+        "precio": 8500,
+        "stock": 22,
+        "imagen": "/images/Camara.jpg"
+    },
+    {
+        "id": 2,
+        "nombre": "tv",
+        "precio": 9500,
+        "stock": 12,
+        "imagen": "/images/TV.jpg"
+    },
+    {
+        "id": 3,
+        "nombre": "mouse",
+        "precio": 50,
+        "stock": 50,
+        "imagen": "/images/Mouse.jpeg"
+    }
+]
