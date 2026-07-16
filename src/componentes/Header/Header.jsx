@@ -1,20 +1,35 @@
-import './Header.module.css';
-import { Link } from 'react-router-dom';
+import styles from './Header.module.css';
+import { Link, NavLink } from 'react-router-dom';
 import CartWidget from '../CartWidget/CartWidget';
+import { useAuth } from '../../context/useAuth';
 
 function Header () {
+    const { usuario, cerrarSesion } = useAuth();
+
     return (
-        <>
-        <header style={{ backgroundColor: "#8DE2D6", padding: "10px", textAlign: "center", color: "white" }}>
-            <h1>TalentoTech</h1>
-            <nav style={{ display: "flex", justifyContent: "center", gap: "20px", alignItems: "center", flexWrap: "wrap" }}>
-                <Link style={{ color: "white" }} to="/">Inicio</Link>
-                <Link style={{ color: "white" }} to="/productos">Productos</Link>
-                <Link style={{ color: "white" }} to="/agregar-producto">Agregar producto</Link>
-                <Link style={{ color: "white" }} to="/carrito"><CartWidget /></Link>
+        <header className={styles.header}>
+            <Link className={styles.marca} to="/">FunkoManía</Link>
+            <nav className={styles.nav} aria-label="Navegación principal">
+                <NavLink to="/">Inicio</NavLink>
+                <NavLink to="/productos">Productos</NavLink>
+                <Link to="/carrito"><CartWidget /></Link>
+                {usuario ? (
+                    <>
+                        <NavLink to="/agregar-producto">Agregar producto</NavLink>
+                        <NavLink to="/gestion">Gestionar</NavLink>
+                        <span className={styles.usuario}>{usuario.email}</span>
+                        <button className={styles.logout} type="button" onClick={cerrarSesion}>
+                            Salir
+                        </button>
+                    </>
+                ) : (
+                    <>
+                        <NavLink to="/login">Ingresar</NavLink>
+                        <NavLink to="/registro">Registrarse</NavLink>
+                    </>
+                )}
             </nav>
         </header>
-        </>
     )
 }
 

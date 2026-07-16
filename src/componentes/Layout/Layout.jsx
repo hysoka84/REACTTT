@@ -4,9 +4,9 @@ import Footer from "../Footer/Footer";
 
 export function Layout () {
   return (
-    <div>
+    <div className="aplicacion">
       <Header />
-      <main style={{ padding: "20px" }}>
+      <main className="contenido-principal">
         <Outlet />
       </main>
       <Footer />

@@ -1,14 +1,30 @@
 import { Link } from "react-router-dom";
+import { FaEdit, FaTrash } from "react-icons/fa";
+import { BotonAccion } from "../BotonAccion/BotonAccion";
 
-export function Item({ id, nombre, precio, stock, imagen }) {
+export function Item({ id, nombre, precio, stock, imagen, onDelete }) {
     return (
-        <div style={{ border: "1px solid #ddd", padding: "12px", borderRadius: "8px", width: "180px" }}>
-            <img src={imagen} alt={nombre} width="150" style={{ height: "120px", objectFit: "cover" }} />
+        <article className="producto-card">
+            <img src={imagen} alt={nombre} />
             <h3>{nombre}</h3>
-            <p>Valor: ${precio}</p>
-            <p>stock disponible: {stock}</p>
+            <p className="producto-card__precio">${precio}</p>
+            <p>Stock disponible: {stock}</p>
             <Link to={`/producto/${id}`}>Ver detalle</Link>
-        </div>
+            {onDelete && (
+                <div className="producto-card__acciones">
+                    <Link to={`/editar-producto/${id}`}>
+                        <FaEdit aria-hidden="true" /> Editar
+                    </Link>
+                    <BotonAccion
+                        $peligro
+                        type="button"
+                        onClick={() => onDelete(id, nombre)}
+                    >
+                        <FaTrash aria-hidden="true" /> Eliminar
+                    </BotonAccion>
+                </div>
+            )}
+        </article>
     );
 }
 

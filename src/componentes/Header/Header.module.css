@@ -1,6 +1,8 @@
-.header {
-    background-color: blue;
-    padding: 10px;
-    text-Align: center;
-    color: white;
-}
+.header { background-color: #5b2a86; padding: 18px 24px; color: white; display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; }
+.marca { color: white; font-size: 1.6rem; font-weight: 700; text-decoration: none; }
+.nav { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
+.nav a { color: white; text-decoration: none; }
+.nav a:hover { text-decoration: underline; }
+.usuario { font-size: .9rem; }
+.logout { border: 1px solid white; border-radius: 5px; padding: 6px 10px; background: transparent; color: white; }
+@media (max-width: 600px) { .header { justify-content: center; } .nav { justify-content: center; } }

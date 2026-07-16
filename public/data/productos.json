@@ -1,23 +1,86 @@
 [
     {
         "id": 1,
-        "nombre": "Camara",
-        "precio": 8500,
-        "stock": 22,
-        "imagen": "/images/Camara.jpg"
+        "nombre": "Buzz Lightyear",
+        "precio": 28990,
+        "stock": 7,
+        "imagen": "/images/buzz-lightyear.jfif"
     },
     {
         "id": 2,
-        "nombre": "tv",
-        "precio": 9500,
-        "stock": 12,
-        "imagen": "/images/TV.jpg"
+        "nombre": "Homero Simpson",
+        "precio": 25990,
+        "stock": 6,
+        "imagen": "/images/homero-simpson.jfif"
     },
     {
         "id": 3,
-        "nombre": "mouse",
-        "precio": 50,
-        "stock": 50,
-        "imagen": "/images/Mouse.jpeg"
+        "nombre": "Thanos",
+        "precio": 31990,
+        "stock": 4,
+        "imagen": "/images/thanos.jfif"
+    },
+    {
+        "id": 4,
+        "nombre": "Mike Wheeler",
+        "precio": 26990,
+        "stock": 8,
+        "imagen": "/images/mike-wazowski.jfif"
+    },
+    {
+        "id": 5,
+        "nombre": "Tony Tony Chopper",
+        "precio": 29990,
+        "stock": 5,
+        "imagen": "/images/tony-tony-chopper.jfif"
+    },
+    {
+        "id": 6,
+        "nombre": "Duff McKagan",
+        "precio": 27990,
+        "stock": 3,
+        "imagen": "/images/homero-duff.jfif"
+    },
+    {
+        "id": 7,
+        "nombre": "Roronoa Zoro",
+        "precio": 30990,
+        "stock": 6,
+        "imagen": "/images/roronoa-zoro.jfif"
+    },
+    {
+        "id": 8,
+        "nombre": "Messi Campeón",
+        "precio": 34990,
+        "stock": 10,
+        "imagen": "/images/messi-copa.jfif"
+    },
+    {
+        "id": 9,
+        "nombre": "Goku",
+        "precio": 32990,
+        "stock": 5,
+        "imagen": "/images/goku-super-saiyan.jfif"
+    },
+    {
+        "id": 10,
+        "nombre": "Goku Ultra Instinct",
+        "precio": 28990,
+        "stock": 9,
+        "imagen": "/images/goku.jfif"
+    },
+    {
+        "id": 11,
+        "nombre": "Harry Potter",
+        "precio": 27990,
+        "stock": 7,
+        "imagen": "/images/harry-potter.jfif"
+    },
+    {
+        "id": 12,
+        "nombre": "Messi Selección Argentina",
+        "precio": 33990,
+        "stock": 8,
+        "imagen": "/images/messi-seleccion.jfif"
     }
 ]
