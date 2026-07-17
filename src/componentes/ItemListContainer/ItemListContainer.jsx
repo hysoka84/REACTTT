@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { collection, deleteDoc, doc, getDocs } from "firebase/firestore";
+import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
 import ItemList from "../ItemList/ItemList";
 import Cargando from "../Cargando/Cargando";
 import Paginador from "../Paginador/Paginador";
@@ -14,6 +16,8 @@ function ItemListContainer({ mensaje, administrar = false }) {
     const [cargando, setCargando] = useState(true);
     const [busqueda, setBusqueda] = useState("");
     const [paginaActual, setPaginaActual] = useState(1);
+    const [productoAEliminar, setProductoAEliminar] = useState(null);
+    const [eliminando, setEliminando] = useState(false);
 
     useEffect(() => {
         const obtenerProductos = async () => {
@@ -53,20 +57,26 @@ function ItemListContainer({ mensaje, administrar = false }) {
         setPaginaActual(1);
     };
 
-    const eliminarProducto = async (id, nombre) => {
-        const confirmar = window.confirm(`¿Eliminar ${nombre}?`);
+    const eliminarProducto = async () => {
+        if (!productoAEliminar) return;
 
-        if (!confirmar) return;
-
+        setEliminando(true);
         try {
-            await deleteDoc(doc(db, "productos", id));
+            await deleteDoc(doc(db, "productos", productoAEliminar.id));
             setProductos((productosActuales) =>
-                productosActuales.filter((producto) => producto.id !== id)
+                productosActuales.filter((producto) => producto.id !== productoAEliminar.id)
             );
+            setProductoAEliminar(null);
         } catch (error) {
             setError("No se pudo eliminar el producto");
             console.error(error);
+        } finally {
+            setEliminando(false);
         }
+    };
+
+    const solicitarEliminacion = (id, nombre) => {
+        setProductoAEliminar({ id, nombre });
     };
 
     if (cargando) return <Cargando mensaje="Cargando productos..." />;
@@ -97,7 +107,7 @@ function ItemListContainer({ mensaje, administrar = false }) {
                 <>
                     <ItemList
                         productos={productosVisibles}
-                        onDelete={administrar ? eliminarProducto : null}
+                        onDelete={administrar ? solicitarEliminacion : null}
                     />
                     <Paginador
                         paginaActual={paginaActual}
@@ -108,6 +118,35 @@ function ItemListContainer({ mensaje, administrar = false }) {
             ) : (
                 <p>No encontramos productos con ese nombre.</p>
             )}
+
+            <Modal
+                show={Boolean(productoAEliminar)}
+                onHide={() => setProductoAEliminar(null)}
+                centered
+            >
+                <Modal.Header closeButton>
+                    <Modal.Title>Confirmar eliminación</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    ¿Seguro que querés eliminar el producto {productoAEliminar?.nombre}?
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button
+                        variant="secondary"
+                        onClick={() => setProductoAEliminar(null)}
+                        disabled={eliminando}
+                    >
+                        Cancelar
+                    </Button>
+                    <Button
+                        variant="danger"
+                        onClick={eliminarProducto}
+                        disabled={eliminando}
+                    >
+                        {eliminando ? "Eliminando..." : "Eliminar"}
+                    </Button>
+                </Modal.Footer>
+            </Modal>
         </div>
     );
 }
