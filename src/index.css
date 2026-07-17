@@ -40,6 +40,11 @@ form button, main button { border: 0; border-radius: 6px; padding: 10px 16px; ba
 .campo-error { color: #b42318; font-size: .9rem; margin: 5px 0 0; }
 form input[aria-invalid="true"] { border-color: #b42318; }
 .auth-form { display: flex; flex-direction: column; max-width: 400px; margin: 40px auto; padding: 24px; gap: 18px; border: 1px solid #e6ddec; border-radius: 10px; background: white; }
+.password-input { position: relative; }
+.password-input input { padding-right: 46px; }
+.password-input .password-input__boton { position: absolute; top: 50%; right: 6px; transform: translateY(-50%); display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; padding: 0; border: 0; background: transparent; color: #5b2a86; }
+.password-input .password-input__boton:hover { background: #f2ebf7; }
+.password-input .password-input__boton:focus-visible { outline: 2px solid #5b2a86; outline-offset: 1px; }
 
 .carrito-lista { display: flex; flex-direction: column; gap: 16px; align-items: center; }
 .carrito-producto { width: min(100%, 520px); padding: 16px; border: 1px solid #e6ddec; border-radius: 10px; background: white; }

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useAuth } from "../../context/useAuth";
 import Seo from "../Seo/Seo";
 
@@ -10,6 +11,7 @@ function AuthForm({ modo }) {
     const { registrar, iniciarSesion } = useAuth();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [mostrarPassword, setMostrarPassword] = useState(false);
     const [error, setError] = useState("");
     const [enviando, setEnviando] = useState(false);
 
@@ -71,12 +73,25 @@ function AuthForm({ modo }) {
 
             <div>
                 <label htmlFor="password">Contraseña:</label>
-                <input
-                    id="password"
-                    type="password"
-                    value={password}
-                    onChange={(evento) => setPassword(evento.target.value)}
-                />
+                <div className="password-input">
+                    <input
+                        id="password"
+                        type={mostrarPassword ? "text" : "password"}
+                        value={password}
+                        onChange={(evento) => setPassword(evento.target.value)}
+                    />
+                    <button
+                        className="password-input__boton"
+                        type="button"
+                        onClick={() => setMostrarPassword(!mostrarPassword)}
+                        aria-label={mostrarPassword ? "Ocultar contraseña" : "Mostrar contraseña"}
+                        aria-pressed={mostrarPassword}
+                    >
+                        {mostrarPassword
+                            ? <FaEyeSlash aria-hidden="true" />
+                            : <FaEye aria-hidden="true" />}
+                    </button>
+                </div>
             </div>
 
             <button type="submit" disabled={enviando}>
