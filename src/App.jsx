@@ -7,6 +7,7 @@ import Carrito from "./componentes/Carrito/Carrito";
 import AuthForm from "./componentes/Auth/AuthForm";
 import ProtectedRoute from "./componentes/ProtectedRoute/ProtectedRoute";
 import Seo from "./componentes/Seo/Seo";
+import GestionCupones from "./componentes/GestionCupones/GestionCupones";
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
         <Route element={<ProtectedRoute soloAdmin />}>
           <Route path="/agregar-producto" element={<FormularioContainer />} />
           <Route path="/editar-producto/:id" element={<FormularioContainer />} />
+          <Route path="/admin/cupones" element={<GestionCupones />} />
           <Route
             path="/gestion"
             element={<ItemListContainer mensaje="Gestión de productos" administrar />}

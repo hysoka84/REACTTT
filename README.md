@@ -11,6 +11,9 @@ Proyecto educativo de eCommerce desarrollado con React y Vite para Talento Tech.
 - Registro, inicio y cierre de sesión con Firebase Authentication.
 - Rutas de administración protegidas mediante el rol de administrador.
 - Alta, modificación y eliminación de productos.
+- CRUD de cupones de descuento reservado al administrador.
+- Validación y aplicación de cupones en el carrito.
+- Cálculo de subtotal, descuento y total final.
 - Validaciones, mensajes de error, confirmación antes de eliminar y estados de carga.
 - Diseño responsive con React-Bootstrap.
 - Componentes estilizados, iconos y metadatos dinámicos.
@@ -77,7 +80,15 @@ El proyecto utiliza:
 - Authentication con el proveedor correo electrónico/contraseña.
 - Una colección de Firestore llamada `productos`.
 - Una colección llamada `usuarios`, donde el ID de cada documento es el UID de Authentication.
+- Una colección llamada `cupones` para almacenar los códigos de descuento.
 - Documentos con los campos `nombre`, `precio`, `stock` e `imagen`.
+
+Cada documento de `cupones` utiliza esta estructura:
+
+```text
+codigo: "AMIGO2026"
+descuento: 10
+```
 
 El usuario administrador debe tener un documento en `usuarios/{UID}` con el campo `rol` y el valor `admin`. Los usuarios sin ese rol pueden utilizar el catálogo y el carrito, pero no administrar productos.
 
@@ -98,6 +109,11 @@ match /productos/{productoId} {
 match /usuarios/{usuarioId} {
   allow read: if request.auth != null && request.auth.uid == usuarioId;
   allow create, update, delete: if false;
+}
+
+match /cupones/{cuponId} {
+  allow read: if true;
+  allow create, update, delete: if esAdmin();
 }
 ```
 

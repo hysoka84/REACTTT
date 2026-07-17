@@ -45,12 +45,20 @@ form input[aria-invalid="true"] { border-color: #b42318; }
 .password-input .password-input__boton { position: absolute; top: 50%; right: 6px; transform: translateY(-50%); display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; padding: 0; border: 0; background: transparent; color: #5b2a86; }
 .password-input .password-input__boton:hover { background: #f2ebf7; }
 .password-input .password-input__boton:focus-visible { outline: 2px solid #5b2a86; outline-offset: 1px; }
+.cupon-form { max-width: 520px; display: flex; flex-direction: column; gap: 16px; margin: 24px 0; padding: 20px; border: 1px solid #e6ddec; border-radius: 10px; background: white; }
+.cupon-form__acciones, .cupon-card__acciones { display: flex; flex-wrap: wrap; gap: 10px; }
+.cupones-lista { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-top: 18px; }
+.cupon-card { padding: 16px; border: 1px solid #e6ddec; border-radius: 10px; background: white; box-shadow: 0 4px 12px rgb(36 19 50 / 8%); }
 
 .carrito-lista { display: flex; flex-direction: column; gap: 16px; align-items: center; }
 .carrito-producto { width: min(100%, 520px); padding: 16px; border: 1px solid #e6ddec; border-radius: 10px; background: white; }
 .carrito-producto__imagen { width: 110px; height: 110px; object-fit: contain; background: #f2ebf7; border-radius: 8px; }
 .carrito-cantidad { display: flex; align-items: center; gap: 12px; margin: 12px 0; }
 .carrito-cantidad button { width: 38px; height: 38px; padding: 0; font-size: 1.2rem; }
+.carrito-resumen { width: min(100%, 520px); margin: 24px auto; padding: 20px; border: 1px solid #e6ddec; border-radius: 10px; background: white; }
+.cupon-aplicar { margin: 18px 0; }
+.cupon-aplicar__controles { display: flex; gap: 10px; }
+.cupon-aplicar__controles input { flex: 1; }
 main button:disabled { background: #aaa2af; cursor: not-allowed; }
 .mensaje-carrito { margin-top: 12px; color: #19733a; font-weight: 600; }
 .boton-volver { display: inline-block; margin-bottom: 18px; color: #5b2a86; font-weight: 600; }
@@ -63,4 +71,5 @@ main button:disabled { background: #aaa2af; cursor: not-allowed; }
 @media (max-width: 600px) {
   .contenido-principal { padding: 24px 16px; }
   .presentacion { padding-top: 8px; }
+  .cupon-aplicar__controles { flex-direction: column; }
 }

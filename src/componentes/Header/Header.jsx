@@ -19,6 +19,7 @@ function Header() {
                             <>
                                 <NavLink to="/agregar-producto">Agregar producto</NavLink>
                                 <NavLink to="/gestion">Gestionar</NavLink>
+                                <NavLink to="/admin/cupones">Gestionar cupones</NavLink>
                             </>
                         )}
                         <span className={styles.usuario}>{usuario.email}</span>
