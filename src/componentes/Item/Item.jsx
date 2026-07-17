@@ -5,7 +5,13 @@ import { BotonAccion } from "../BotonAccion/BotonAccion";
 export function Item({ id, nombre, precio, stock, imagen, onDelete }) {
     return (
         <article className="producto-card">
-            <img src={imagen} alt={nombre} />
+            <Link
+                className="producto-card__imagen-enlace"
+                to={`/producto/${id}`}
+                aria-label={`Ver detalle de ${nombre}`}
+            >
+                <img src={imagen} alt={nombre} />
+            </Link>
             <h3>{nombre}</h3>
             <p className="producto-card__precio">${precio}</p>
             <p>Stock disponible: {stock}</p>
