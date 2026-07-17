@@ -9,7 +9,7 @@ Proyecto educativo de eCommerce desarrollado con React y Vite para Talento Tech.
 - Carrito global con Context API.
 - Control de cantidades y stock, eliminación y vaciado del carrito.
 - Registro, inicio y cierre de sesión con Firebase Authentication.
-- Rutas de administración protegidas.
+- Rutas de administración protegidas mediante el rol de administrador.
 - Alta, modificación y eliminación de productos.
 - Validaciones, mensajes de error, confirmación antes de eliminar y estados de carga.
 - Diseño responsive con React-Bootstrap.
@@ -76,14 +76,28 @@ El proyecto utiliza:
 
 - Authentication con el proveedor correo electrónico/contraseña.
 - Una colección de Firestore llamada `productos`.
+- Una colección llamada `usuarios`, donde el ID de cada documento es el UID de Authentication.
 - Documentos con los campos `nombre`, `precio`, `stock` e `imagen`.
 
-Las reglas utilizadas permiten la lectura pública del catálogo y requieren autenticación para crear, modificar o eliminar productos:
+El usuario administrador debe tener un documento en `usuarios/{UID}` con el campo `rol` y el valor `admin`. Los usuarios sin ese rol pueden utilizar el catálogo y el carrito, pero no administrar productos.
+
+Las reglas permiten la lectura pública del catálogo y reservan la administración para el rol `admin`:
 
 ```text
+function esAdmin() {
+  return request.auth != null
+    && exists(/databases/$(database)/documents/usuarios/$(request.auth.uid))
+    && get(/databases/$(database)/documents/usuarios/$(request.auth.uid)).data.rol == "admin";
+}
+
 match /productos/{productoId} {
   allow read: if true;
-  allow create, update, delete: if request.auth != null;
+  allow create, update, delete: if esAdmin();
+}
+
+match /usuarios/{usuarioId} {
+  allow read: if request.auth != null && request.auth.uid == usuarioId;
+  allow create, update, delete: if false;
 }
 ```
 

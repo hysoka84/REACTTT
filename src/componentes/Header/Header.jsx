@@ -1,10 +1,10 @@
-import styles from './Header.module.css';
-import { Link, NavLink } from 'react-router-dom';
-import CartWidget from '../CartWidget/CartWidget';
-import { useAuth } from '../../context/useAuth';
+import styles from "./Header.module.css";
+import { Link, NavLink } from "react-router-dom";
+import CartWidget from "../CartWidget/CartWidget";
+import { useAuth } from "../../context/useAuth";
 
-function Header () {
-    const { usuario, cerrarSesion } = useAuth();
+function Header() {
+    const { usuario, esAdmin, cerrarSesion } = useAuth();
 
     return (
         <header className={styles.header}>
@@ -15,8 +15,12 @@ function Header () {
                 <Link to="/carrito"><CartWidget /></Link>
                 {usuario ? (
                     <>
-                        <NavLink to="/agregar-producto">Agregar producto</NavLink>
-                        <NavLink to="/gestion">Gestionar</NavLink>
+                        {esAdmin && (
+                            <>
+                                <NavLink to="/agregar-producto">Agregar producto</NavLink>
+                                <NavLink to="/gestion">Gestionar</NavLink>
+                            </>
+                        )}
                         <span className={styles.usuario}>{usuario.email}</span>
                         <button className={styles.logout} type="button" onClick={cerrarSesion}>
                             Salir
@@ -30,7 +34,7 @@ function Header () {
                 )}
             </nav>
         </header>
-    )
+    );
 }
 
 export default Header;

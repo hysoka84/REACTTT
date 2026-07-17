@@ -34,7 +34,7 @@ function App() {
         <Route path="/carrito" element={<Carrito />} />
         <Route path="/login" element={<AuthForm modo="login" />} />
         <Route path="/registro" element={<AuthForm modo="registro" />} />
-        <Route element={<ProtectedRoute />}>
+        <Route element={<ProtectedRoute soloAdmin />}>
           <Route path="/agregar-producto" element={<FormularioContainer />} />
           <Route path="/editar-producto/:id" element={<FormularioContainer />} />
           <Route
